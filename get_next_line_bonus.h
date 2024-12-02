@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momari <momari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:50:43 by momari            #+#    #+#             */
-/*   Updated: 2023/12/08 20:34:55 by momari           ###   ########.fr       */
+/*   Created: 2023/12/06 11:43:26 by momari            #+#    #+#             */
+/*   Updated: 2023/12/08 18:05:06 by momari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
 
-# define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -31,6 +31,5 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
 int		ft_allocate(char **src);
-int		ft_check(int fd);
 
 #endif

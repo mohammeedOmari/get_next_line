@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momari <momari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:52:35 by momari            #+#    #+#             */
-/*   Updated: 2023/12/08 21:41:15 by momari           ###   ########.fr       */
+/*   Created: 2023/12/06 11:43:17 by momari            #+#    #+#             */
+/*   Updated: 2023/12/08 20:31:29 by momari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_createstr(char *src, char **string)
 {
@@ -64,39 +64,31 @@ int	ft_allocate(char **src)
 	return (0);
 }
 
-int	ft_check(int fd)
-{
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX || read(fd, 0, 0) == -1
-		|| BUFFER_SIZE > INT_MAX)
-		return (1);
-	return (0);
-}
-
 char	*get_next_line(int fd)
 {
 	int			re;
-	static char	*buffer;
+	static char	*buffer[OPEN_MAX];
 	char		*string;
 	char		*return_str;
 
-	if (ft_check(fd) == 1)
-		return (free(buffer), buffer = NULL, NULL);
-	if (ft_allocate(&string) == 1)
-		return (free(buffer), buffer = NULL, NULL);
+	if (fd < 0 || BUFFER_SIZE < 0 || fd > OPEN_MAX || BUFFER_SIZE > INT_MAX)
+		return (NULL);
+	if (ft_allocate(&string))
+		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
 	re = 1;
 	while (re)
 	{
 		re = read(fd, string, BUFFER_SIZE);
 		if (re == -1)
-			return (free(string), free(buffer), buffer = NULL, NULL);
+			return (free(string), free(buffer[fd]), buffer[fd] = NULL, NULL);
 		string[re] = '\0';
-		buffer = ft_strjoin(buffer, string);
-		if (!buffer || ft_search(string) != -1)
+		buffer[fd] = ft_strjoin(buffer[fd], string);
+		if (!buffer[fd] || ft_search(string) != -1)
 			break ;
 	}
-	return_str = ft_createstr(buffer, &string);
+	return_str = ft_createstr(buffer[fd], &string);
 	if (!return_str)
-		return (free(buffer), buffer = NULL, NULL);
-	buffer = ft_newbuffer(buffer);
+		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
+	buffer[fd] = ft_newbuffer(buffer[fd]);
 	return (return_str);
 }

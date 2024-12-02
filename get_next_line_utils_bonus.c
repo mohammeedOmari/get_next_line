@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momari <momari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 12:17:31 by momari            #+#    #+#             */
-/*   Updated: 2023/12/04 18:01:44 by momari           ###   ########.fr       */
+/*   Created: 2023/12/06 11:43:29 by momari            #+#    #+#             */
+/*   Updated: 2023/12/08 08:26:42 by momari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_search(char *str)
 {
